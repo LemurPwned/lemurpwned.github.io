@@ -1,6 +1,6 @@
 
 // set the dimensions and margins of the graph
-var margin = { top: 10, right: 30, bottom: 30, left: 60 },
+var margin = { top: 20, right: 30, bottom: 80, left: 60 },
     width = 660 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
@@ -30,7 +30,7 @@ var night_day = d3.scaleSequential().domain([1, step]).interpolator(d3.interpola
 var sliderSimple = d3
     .sliderBottom()
     .min(0)
-    .max(step)
+    .max(step - 1)
     .width(300)
     .ticks(5)
     .default(1)
@@ -52,7 +52,7 @@ var sliderSimple = d3
                 .style("opacity", 1e-6)
                 .attr("r", 3)
             d3.select("svg").style("background-color", night_day(id_val))
-
+            d3.select("#chart").style("background-color", night_day(id_val))
             let counts = {}
             let tot = 0
             for (let i = val * tmp_step; i <= val * tmp_step + tmp_step; i++) {
