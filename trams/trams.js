@@ -1,10 +1,17 @@
+
 // set the dimensions and margins of the graph
 var margin = { top: 10, right: 30, bottom: 30, left: 60 },
     width = 660 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
-// 
-// append the svg object to the body of the page
-var svg = d3.select("#my_dataviz")
+
+// var svg = d3.select("body").append("svg")
+//     .attr("width", width + margin.left + margin.right)
+//     .attr("height", height + margin.top + margin.bottom)
+//     .append("g")
+//     .attr("transform",
+//         "translate(" + margin.left + "," + margin.top + ")");
+
+var svg = d3.select("#tram_map")
     .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
@@ -12,15 +19,18 @@ var svg = d3.select("#my_dataviz")
     .attr("transform",
         "translate(" + margin.left + "," + margin.top + ")");
 
-
 var lineColor = d3.scaleSequential().domain([1, 79])
-    .interpolator(d3.interpolateViridis);
+    .interpolator(d3.interpolateInferno);
 
-
+var max_range = 1000
+var step = 15
+var tmp_step = Math.ceil(1000 / step)
+console.log(tmp_step)
+var night_day = d3.scaleSequential().domain([1, step]).interpolator(d3.interpolateBlues)
 var sliderSimple = d3
     .sliderBottom()
     .min(0)
-    .max(998)
+    .max(step)
     .width(300)
     .ticks(5)
     .default(1)
@@ -41,10 +51,40 @@ var sliderSimple = d3
                 .duration(200)
                 .style("opacity", 1e-6)
                 .attr("r", 3)
-            d3.selectAll("#t" + id_val)
-                .transition()
-                .duration(200)
-                .style("opacity", 1.0)
+            d3.select("svg").style("background-color", night_day(id_val))
+
+            let counts = {}
+            let tot = 0
+            for (let i = val * tmp_step; i <= val * tmp_step + tmp_step; i++) {
+                let id = parseInt(Math.ceil(i))
+                let el = undefined
+                el = d3.select("#t" + id)
+
+                try {
+                    let heading = el.attr("headi")
+                    if (counts.hasOwnProperty(heading)) {
+                        counts[heading] += 1
+                    }
+                    else { counts[heading] = 1 }
+                    tot += 1
+                }
+                catch (err) { }
+
+                el
+                    .transition()
+                    .duration(200)
+                    .style("opacity", 1.0)
+                    .attr("r", 4)
+            }
+            let new_data = []
+            const keys = Object.keys(counts)
+            for (let i = 0; i < keys.length; i++) {
+                new_data.push({
+                    'heading': keys[i],
+                    'value': counts[keys[i]] / tot
+                })
+            }
+            update_barchart(new_data)
         }
     });
 
@@ -59,10 +99,11 @@ var gSimple = d3
 gSimple.call(sliderSimple);
 
 d3.select('p#value-simple').text("Timestamp: " + sliderSimple.value());
-
+let tdata = []
 //Read the data
 d3.csv("./trams.csv", function (data) {
     // Add X axis
+    tdata = data
     var x = d3.scaleLinear()
         .domain([19.85, 20.12])
         .range([0, width]);
@@ -115,6 +156,9 @@ d3.csv("./trams.csv", function (data) {
         .append("circle")
         .attr("id", function (d) {
             return 't' + d.timestamp
+        })
+        .attr("headi", function (d) {
+            return d.heading;
         })
         .attr("class", function (d) {
             if (d.line < 10) return "dot " + "ten"
