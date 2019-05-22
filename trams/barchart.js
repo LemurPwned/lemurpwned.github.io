@@ -74,7 +74,6 @@ function update_barchart(data) {
         .attr("height", d => { return height - y(d.value); });
 
     bar.selectAll(".label")
-        .enter()
         .attr("class", "label")
         .style("display", d => { return d.value === null ? "none" : null; })
         .attr("x", (d => { return x(d.heading) + (x.bandwidth() / 2) - 8; }))
@@ -90,6 +89,7 @@ function update_barchart(data) {
         .text(d => { return formatPercent(d.value); })
         .attr("y", d => { return y(d.value) + .1; })
         .attr("dy", "-.7em");
+
     bar.selectAll(".bar")
         .data(data)
         .enter().append("rect")
