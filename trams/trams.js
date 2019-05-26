@@ -4,12 +4,6 @@ var margin = { top: 20, right: 30, bottom: 80, left: 60 },
     width = 660 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
-// var svg = d3.select("body").append("svg")
-//     .attr("width", width + margin.left + margin.right)
-//     .attr("height", height + margin.top + margin.bottom)
-//     .append("g")
-//     .attr("transform",
-//         "translate(" + margin.left + "," + margin.top + ")");
 
 var svg = d3.select("#tram_map")
     .append("svg")
@@ -101,52 +95,52 @@ gSimple.call(sliderSimple);
 d3.select('p#value-simple').text("Timestamp: " + sliderSimple.value());
 let tdata = []
 //Read the data
-d3.csv("./trams.csv", function (data) {
+
+
+var offset = [(width) / 2, (height) / 2];
+var parallels = [50.1, 20.01];
+
+var projection = d3
+    .geoAlbers()
+    .center([0, 50.0647])
+    .rotate([-19.945, 0])
+    .parallels(parallels)
+    .translate(offset)
+    .scale(105000);
+
+var path = d3.geoPath().projection(projection);
+
+d3.queue()
+    .defer(d3.csv, "./trams.csv")
+    .defer(d3.json, './krak.geojson')
+    .await(ready)
+
+function ready(error, data, topojson) {
     // Add X axis
+    if (error) console.log(error)
     tdata = data
     var x = d3.scaleLinear()
         .domain([19.85, 20.12])
         .range([0, width]);
+
+
+    svg
+        .selectAll("path")
+        .data(topojson.features)
+        .enter()
+        .append("path")
+        .attr("d", path)
+        .style("opacity", 0.1)
+        .style("stroke", "#fff")
+        .style("stroke-width", 0.7);
+
     svg.append("g")
         .attr("transform", "translate(0," + height + ")")
-    // .call(d3.axisBottom(x));
 
     // Add Y axis
     var y = d3.scaleLinear()
         .domain([50.0, 50.12])
         .range([height, 0]);
-    svg.append("g")
-    // .call(d3.axisLeft(y));
-
-    var highlight = function (d) {
-
-        if (d.line < 10) selected_line = "ten"
-        if (d.line < 30) selected_line = "thirty"
-        if (d.line < 50) selected_line = "fifty"
-        if (d.line < 80) selected_line = "eighty"
-
-        d3.selectAll(".dot")
-            .transition()
-            .duration(200)
-            .style("fill", "lightgrey")
-            .attr("r", 3)
-
-        d3.selectAll("." + selected_line)
-            .transition()
-            .duration(200)
-            .style("fill", lineColor(d.line))
-            .attr("r", 7)
-    }
-
-    // Highlight the specie that is hovered
-    var doNotHighlight = function () {
-        d3.selectAll(".dot")
-            .transition()
-            .duration(200)
-            .style("fill", "lightgrey")
-            .attr("r", 5)
-    }
-
 
     // Add dots
     svg.append('g')
@@ -179,4 +173,34 @@ d3.csv("./trams.csv", function (data) {
     // .on("mouseover", highlight)
     // .on("mouseleave", doNotHighlight)
 
-})
+}
+
+
+// var highlight = function (d) {
+
+//     if (d.line < 10) selected_line = "ten"
+//     if (d.line < 30) selected_line = "thirty"
+//     if (d.line < 50) selected_line = "fifty"
+//     if (d.line < 80) selected_line = "eighty"
+
+//     d3.selectAll(".dot")
+//         .transition()
+//         .duration(200)
+//         .style("fill", "lightgrey")
+//         .attr("r", 3)
+
+//     d3.selectAll("." + selected_line)
+//         .transition()
+//         .duration(200)
+//         .style("fill", lineColor(d.line))
+//         .attr("r", 7)
+// }
+
+// // Highlight the specie that is hovered
+// var doNotHighlight = function () {
+//     d3.selectAll(".dot")
+//         .transition()
+//         .duration(200)
+//         .style("fill", "lightgrey")
+//         .attr("r", 5)
+// }
