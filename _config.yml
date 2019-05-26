@@ -1,4 +1,4 @@
-theme: jekyll-theme-cayman
+remote_theme: TaylanTatli/Moon
 plugins:
   - jekyll-relative-links
 relative_links:
