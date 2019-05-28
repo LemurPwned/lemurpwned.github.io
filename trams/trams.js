@@ -19,11 +19,47 @@ var lineColor = d3
 var max_range = 1000;
 var step = 15;
 var tmp_step = Math.ceil(1000 / step);
-console.log(tmp_step);
+
 var night_day = d3
   .scaleSequential()
   .domain([1, step])
   .interpolator(d3.interpolateBlues);
+
+var tooltip = d3
+  .select("#tram_map")
+  .append("div")
+  .style("opacity", 0)
+  .attr("class", "tooltip")
+  .style("background-color", "white")
+  .style("border", "solid")
+  .style("border-width", "1px")
+  .style("border-radius", "5px")
+  .style("padding", "10px");
+
+// A function that change this tooltip when the user hover a point.
+// Its opacity is set to 1: we can now see it. Plus it set the text and position of tooltip depending on the datapoint (d)
+var mouseover = function(d) {
+  tooltip.style("opacity", 1);
+};
+
+var mousemove = function(d) {
+  d3.select(this).attr("r", 6);
+  tooltip
+    .html("Line: " + parseInt(d.line) + ", heading: " + d.heading)
+    .style("left", d3.mouse(this)[0] + 90 + "px") // It is important to put the +90: other wise the tooltip is exactly where the point is an it creates a weird effect
+    .style("top", d3.mouse(this)[1] + "px");
+};
+
+// A function that change this tooltip when the leaves a point: just need to set opacity to 0 again
+var mouseleave = function(d) {
+  d3.select(this).attr("r", 1.5);
+
+  tooltip
+    .transition()
+    .duration(200)
+    .style("opacity", 0);
+};
+
 var sliderSimple = d3
   .sliderBottom()
   .min(0)
@@ -156,9 +192,10 @@ function ready(error, data, topojson) {
     .attr("r", 1.5)
     .style("fill", function(d) {
       return lineColor(d.line);
-    });
-  // .on("mouseover", highlight)
-  // .on("mouseleave", doNotHighlight)
+    })
+    .on("mouseover", mouseover)
+    .on("mousemove", mousemove)
+    .on("mouseleave", mouseleave);
 }
 function typeTram(d) {
   d[0] = +d.longitude;
@@ -166,32 +203,3 @@ function typeTram(d) {
   d.arcs = projection([+d.longitude, +d.latitude]);
   return d;
 }
-
-// var highlight = function (d) {
-
-//     if (d.line < 10) selected_line = "ten"
-//     if (d.line < 30) selected_line = "thirty"
-//     if (d.line < 50) selected_line = "fifty"
-//     if (d.line < 80) selected_line = "eighty"
-
-//     d3.selectAll(".dot")
-//         .transition()
-//         .duration(200)
-//         .style("fill", "lightgrey")
-//         .attr("r", 3)
-
-//     d3.selectAll("." + selected_line)
-//         .transition()
-//         .duration(200)
-//         .style("fill", lineColor(d.line))
-//         .attr("r", 7)
-// }
-
-// // Highlight the specie that is hovered
-// var doNotHighlight = function () {
-//     d3.selectAll(".dot")
-//         .transition()
-//         .duration(200)
-//         .style("fill", "lightgrey")
-//         .attr("r", 5)
-// }
