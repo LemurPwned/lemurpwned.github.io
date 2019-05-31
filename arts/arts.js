@@ -58,7 +58,7 @@ var mousemove = function(d) {
 };
 
 //Read the data
-d3.csv("./TSNE_ART_DICT.csv", function(data) {
+d3.csv("./TSNE_ART_DICT_REVISED_SVD_CLUSTERING.csv", function(data) {
   // Add X axis
   var max = 2.5;
   var x = d3
