@@ -13,7 +13,7 @@ var x = d3
   .range([0, width])
   .padding(0.4);
 var y = d3.scaleLinear().range([height, 0]);
-y.domain([0, 1]);
+y.domain([0, 0.3]);
 x.domain(cats);
 var axisX = d3
   .axisBottom(x)
@@ -61,7 +61,6 @@ function update_barchart(data) {
       return d.category;
     })
     .on("click", function(d) {
-      console.log(d);
       d3.selectAll(".bar").style("opacity", 0.1);
       d3.select(this).style("opacity", 1);
       var all = d3.selectAll("circle");
