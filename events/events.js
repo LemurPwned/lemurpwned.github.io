@@ -110,8 +110,8 @@ let counts = {};
 let tot = 0;
 
 d3.queue()
-  .defer(d3.csv, "./events.csv", typeEvents)
-  .defer(d3.json, "./krak.geojson")
+  .defer(d3.csv, "./events/events.csv", typeEvents)
+  .defer(d3.json, "./events/krak.geojson")
   .await(ready);
 
 function ready(error, data, topojson) {

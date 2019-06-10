@@ -42,7 +42,7 @@ var z = d3
 
 // load the csv and create the chart
 d3.csv(
-  "stacked_planes.csv",
+  "./stacked-airplanes/stacked_planes.csv",
   function(d, i, columns) {
     for (i = 1, t = 0; i < columns.length; ++i)
       t += d[columns[i]] = +d[columns[i]];

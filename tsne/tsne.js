@@ -85,7 +85,7 @@ var mouseleave = function(d) {
     .style("opacity", 0);
 };
 //Read the data
-d3.csv("./TSNE.csv", function(data) {
+d3.csv("./tsne/TSNE.csv", function(data) {
   // Add X axis
   var x = d3
     .scaleLinear()
