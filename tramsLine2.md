@@ -1,6 +1,8 @@
-#### Tram Line Timeline 
+#### Tram Line Timeline Compacted
 
-We created visualization based on location of trams of line 52 on 13 and 14 of March 2019. On the left side there is Czerwone Maki stop, and on the right Osiedle Piastów. The delays and disruptions can be easly seen on the timeline, as well as a way they cascade in time, as delays cause further delays down the timeline. 
+Visualizes timeline of one tram line registered on 13 and 14 of March. We can see portions of the line where the speed and delays are most common.
+
+
 <HTML>
 <style>
   body {
@@ -64,7 +66,7 @@ We created visualization based on location of trams of line 52 on 13 and 14 of M
                     continue
                 }
                 var aggrX = LEFT_MARGIN
-                var aggrY = TOP_MARGIN + (startTime-time0)/TIME_SCALE
+                var aggrY = TOP_MARGIN
                 console.log(aggrY)
                 var curve = []
                 delta = 0.8*WIDTH*(767773 - sum_distance)/767773
@@ -80,6 +82,7 @@ We created visualization based on location of trams of line 52 on 13 and 14 of M
                     .attr("d", lineFunction(curve))
                     .attr("stroke", "blue")
                     .attr("stroke-width", 2)
+                    .attr("opacity", 0.1)
                     .attr("fill", "none");
             }
 
@@ -98,7 +101,7 @@ We created visualization based on location of trams of line 52 on 13 and 14 of M
                 }
 
                 var aggrX = LEFT_MARGIN + WIDTH*0.8
-                var aggrY = TOP_MARGIN + (startTime-time0)/TIME_SCALE
+                var aggrY = TOP_MARGIN
                 console.log(aggrY)
                 var curve = []
                 delta = 0.8*WIDTH*(767773 - sum_distance)/767773
@@ -115,26 +118,9 @@ We created visualization based on location of trams of line 52 on 13 and 14 of M
                     .attr("d", lineFunction(curve))
                     .attr("stroke", "green")
                     .attr("stroke-width", 2)
+                    .attr("opacity", 0.1)
                     .attr("fill", "none");
             }
-            for (var i = 0; i < 400; i++) {
-                step = 1000 * 60 * 15
-                var newDate = new Date();
-                newDate.setTime(time0 + step * i);
-                var hour = newDate.getHours();
-                var min = newDate.getMinutes();
-                hour = (hour < 10 ? "0" : "") + hour;
-                min = (min < 10 ? "0" : "") + min;
-
-                sg.append('svg:text')
-                    .attr('x', LEFT_MARGIN - 50)
-                    .attr('y', TOP_MARGIN/2 + step * i / TIME_SCALE )
-                    .attr('text-anchor', 'end')
-                    .attr('opacity', .5)
-                    .text(hour + ":" + min) 
-               }
-            
-
 
 
         })
