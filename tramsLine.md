@@ -29,15 +29,15 @@ popular across multiple airlines. However, we can se several outsiders as well.
 <script type="text/javascript">
     function main() {
 
-        WIDTH = 600;
+        WIDTH = 800;
         HEIGHT = 30650;
 
         LEFT_MARGIN = 150;
         RIGHT_MARGIN = 150;
         TOP_MARGIN = 50;
         BOTTOM_MARGIN = 50;
-        TIME_SCALE = 2000
-        time0 = 1552449600000
+        TIME_SCALE = 5000
+        time0 = 1552446000000
 
         var t = d3.json("./trams_line/data52_small.json", function(error, data){
             // console.log("data")
