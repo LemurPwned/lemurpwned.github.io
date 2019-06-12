@@ -13,7 +13,7 @@ Look at the figures below - is it a single city or not anymore?
 General overview of trams system. 
 
 #### [Trams Timeline 52](tramsLine.html)
-#### [Trams Timeline Compacted](tramsLine.html)
+#### [Trams Timeline Compacted](tramsLine2.html)
 
 Explore timeline of just one line of Kraków's tram network pulsing every day. 
 
