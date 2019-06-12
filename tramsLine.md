@@ -37,7 +37,7 @@ popular across multiple airlines. However, we can se several outsiders as well.
         TOP_MARGIN = 50;
         BOTTOM_MARGIN = 50;
         TIME_SCALE = 2000
-        time0 = 1552435440000
+        time0 = 1552449600000
 
         var t = d3.json("./trams_line/data52_small.json", function(error, data){
             // console.log("data")
