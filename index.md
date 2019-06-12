@@ -30,3 +30,8 @@ What happens if we feed openFlight data to t-SNE and work a little on the metric
 
 Interesting clustering of artworks scavenged from famous database. Surprising or not, serves as a good
 portfolio for t-SNE capabilities
+
+
+#### [Manifold learning comparasion](manifold.html)
+
+Comparing diferent algorithms (MDS, ISOMAPS, LLE) on an exmaple rolled-up shape. 
