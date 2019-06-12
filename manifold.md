@@ -1,6 +1,6 @@
 #### Manifold 
 
-We compared manifold alogirthms on a following 3d shape: 
+We compared manifold algorithms on a following 3d shape: 
 
  ![](images/m5.png)
 

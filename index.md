@@ -34,4 +34,4 @@ portfolio for t-SNE capabilities
 
 #### [Manifold learning comparasion](manifold.html)
 
-Comparing diferent algorithms (MDS, ISOMAPS, LLE) on an exmaple rolled-up shape. 
+Comparing different algorithms (MDS, ISOMAPS, LLE) on an example rolled-up shape. 
