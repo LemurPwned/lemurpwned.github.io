@@ -26,7 +26,7 @@ Visualizes timeline of one tram line registered on 13 and 14 of March. We can se
     function main() {
 
         WIDTH = 800;
-        HEIGHT = 30650;
+        HEIGHT = 1000;
 
         LEFT_MARGIN = 150;
         RIGHT_MARGIN = 150;
