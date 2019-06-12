@@ -7,7 +7,12 @@ Whatever else is here, it's not that important
 Ever wondered where is the true heart of the city? It's where you can find most fun, certainly.
 Look at the figures below - is it a single city or not anymore?
 
-#### [Trams Data](tramsLine.html)
+
+#### [Trams Data](trams.html)
+
+General overview of trams system. 
+
+#### [Trams Timeline 52](tramsLine.html)
 
 Explore timeline of just one line of Kraków's tram network pulsing every day. 
 
