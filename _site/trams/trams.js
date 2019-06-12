@@ -146,8 +146,8 @@ var projection = d3
 var path = d3.geoPath().projection(projection);
 
 d3.queue()
-  .defer(d3.csv, "./trams.csv", typeTram)
-  .defer(d3.json, "./krak.geojson")
+  .defer(d3.csv, "./trams/trams.csv", typeTram)
+  .defer(d3.json, "./trams/krak.geojson")
   .await(ready);
 
 function ready(error, data, topojson) {
