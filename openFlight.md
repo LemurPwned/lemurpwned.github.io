@@ -1,7 +1,7 @@
 #### Open Flight planes
 
 We could suspect that the biggest airlines will be mostly using the same airplanes right?
-Let's find out!
+It's interesting to see that generally big airlines have varied fleet with classic Boeing 737 leading the score in most.
 
 <HTML>
 <style>

@@ -2,7 +2,9 @@
 
 So here's an interesting finding. If we supply t-SNE with the airport destinations (destination latitude and longitude)
 then we get the picture below (the subset of destinations is reduced to several most popular ones).
-3 stripes - what do they represent?
+3 stripes - what do they represent? It is actually responsible for 3 main destiantion groups - Asia, Eurpoe and North America.
+The position on the stipe is determined by the total distance flown - i.e. longest trips are red on the bottom while shortest
+on the top.
 
 <!DOCTYPE html>
 <meta charset="utf-8" />

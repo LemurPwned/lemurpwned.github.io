@@ -10,6 +10,8 @@ Popularity of tram line based of number of recorded points:
 
 Here's live tram peak! Additionally, we can see the current distributions of headings (tram orientations).
 Move timeline to -1 to see the whole day. Hourly checkpoints apply. Observe cool night-day cycle!
+Interstingly, the trams are generally well-distributed. Apart from several sinking points, there is approximately
+equal number of trams heading in any direction at any time during the day.
 
 <HTML>
   <style>
