@@ -1,6 +1,14 @@
-theme: jekyll-theme-cayman
+theme: hitchens-theme
 plugins:
   - jekyll-relative-links
+  - jekyll-paginate
 relative_links:
   enabled: true
   collections: true
+
+ignore_theme_config: true
+show_excerpts: true
+layout: post
+# paginate: 20
+# paginate_path: "/page/:num/"
+hide_search: true
