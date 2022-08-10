@@ -6,9 +6,12 @@ relative_links:
   enabled: true
   collections: true
 
-ignore_theme_config: true
+github_username: LemurPwned
+
+ignore_theme_config: false
 show_excerpts: true
 layout: post
-# paginate: 20
-# paginate_path: "/page/:num/"
+paginate: 3
+paginate_path: "/blog/page:num/"
 hide_search: true
+title: Lemurs
