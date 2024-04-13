@@ -1,0 +1,9 @@
+_site/
+.DS_Store
+*.png
+*.jpg
+*.csv
+*.ipynb
+.ipynb_checkpoints/
+node_modules/
+.observablehq
