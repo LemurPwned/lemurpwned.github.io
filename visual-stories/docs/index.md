@@ -29,11 +29,15 @@ toc: false
 .hero h2 {
   margin: 0;
   max-width: 34em;
-  font-size: 20px;
+  font-size: 18px;
   font-style: initial;
   font-weight: 500;
-  line-height: 1.5;
+  line-height: 1.3;
   color: var(--theme-foreground-muted);
+}
+.img {
+  border-radius: 50%;
+  width: 300px;
 }
 
 @media (min-width: 640px) {
@@ -44,8 +48,13 @@ toc: false
 </style>
 
 <div class="hero">
-  <h1>Hello</h1>
-  <h2>This page contains a few of my projects</h2>
+  <h1>Touching the grass</h1>
+  <img padding-top="150px" src="./assets/Lemart.png" class="img"></img>
+  <p>
+  This page does not represent my views as a lemur. It's just an avatar and I'm an actual person.
+  Part of the stuff here was probably written by AI at some point. That AI was not made aware of the fact that 
+  I am not, in fact, a lemur. Perhaps, it's a good thing.
+  </p>
 </div>
 
 
